@@ -1,10 +1,10 @@
 import uuid
 
 
-def generate_user():
-    suffix = uuid.uuid4().hex[:10]
+def build_unique_user_payload():
+    unique_suffix = uuid.uuid4().hex[:10]
     return {
-        "email": f"stellar-{suffix}@yandex.ru",
-        "password": f"pass-{suffix}",
-        "name": f"user-{suffix}",
+        "email": f"stellar-{unique_suffix}@yandex.ru",
+        "password": f"pass-{unique_suffix}",
+        "name": f"user-{unique_suffix}",
     }
