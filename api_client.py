@@ -28,6 +28,10 @@ class StellarBurgersApi:
     def get_ingredients(self):
         return requests.get(ApiRoutes.INGREDIENTS, timeout=self.timeout)
 
+    def get_ingredient_ids(self):
+        response_body = self.get_ingredients().json()
+        return [item["_id"] for item in response_body["data"]]
+
     def create_order(self, order_payload, access_token=None):
         headers = {"Authorization": access_token} if access_token else None
         return requests.post(

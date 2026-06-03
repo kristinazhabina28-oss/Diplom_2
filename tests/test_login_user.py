@@ -1,6 +1,6 @@
 import allure
 
-from assertions import assert_access_token_received, assert_error_response
+from assertions import Assertions
 from data import ApiErrorMessages
 
 
@@ -19,7 +19,7 @@ class TestLoginUser:
             response = api_client.login_user(credentials)
 
         with allure.step("Проверяем статус 200 и тело ответа"):
-            assert_access_token_received(response)
+            Assertions.assert_access_token_received(response)
 
     @allure.title("Вход с неверным логином и паролем возвращает 401")
     def test_login_with_wrong_credentials(self, api_client):
@@ -32,6 +32,6 @@ class TestLoginUser:
             response = api_client.login_user(wrong_credentials)
 
         with allure.step("Проверяем статус 401 и сообщение об ошибке"):
-            assert_error_response(
+            Assertions.assert_error_response(
                 response, 401, ApiErrorMessages.INCORRECT_CREDENTIALS
             )
